@@ -1,0 +1,219 @@
+﻿@using prjRestaurantManagementSystem.Models
+
+@{
+    Layout = null;
+    List<Customer> customers = Model;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Customers - Restaurant Management</title>
+
+    <link rel="stylesheet" href="~/css/style.css" />
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            RMS
+        </div>
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">⌂</span>
+            Dashboard
+
+        </a>
+
+
+        <a asp-controller="Customer"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">👤</span>
+            Customers
+
+        </a>
+
+
+        <a asp-controller="Order"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">🛒</span>
+            Orders
+
+        </a>
+
+
+        <a asp-controller="OrderDetail"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">📋</span>
+            Order Details
+
+        </a>
+
+    </div>
+
+
+    <!-- Main Area -->
+
+    <div class="main">
+
+        <!-- Topbar -->
+
+        <div class="topbar">
+
+            <div class="menu-button">
+                ☰
+            </div>
+
+            <div class="admin">
+                Admin
+            </div>
+
+        </div>
+
+
+        <!-- Customer Content -->
+
+        <div class="content">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>Customers</h1>
+
+                    <p>
+                        Manage your restaurant customers
+                    </p>
+
+                </div>
+
+
+                <a asp-controller="Customer"
+                   asp-action="Edit"
+                   asp-route-id="0"
+                   class="add-button">
+
+                    + Add Customer
+
+                </a>
+
+            </div>
+
+
+            <!-- Customer Table -->
+
+            <div class="table-card">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Customer ID</th>
+
+                            <th>Name</th>
+
+                            <th>Phone</th>
+
+                            <th>Email</th>
+
+                            <th>Address</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var customer in customers)
+                        {
+                            <tr>
+
+                                <td>
+                                    @customer.CustomerId
+                                </td>
+
+                                <td>
+                                    @customer.CustomerName
+                                </td>
+
+                                <td>
+                                    @customer.Phone
+                                </td>
+
+                                <td>
+                                    @customer.Email
+                                </td>
+
+                                <td>
+                                    @customer.Address
+                                </td>
+
+
+                                <td>
+
+                                    <a asp-controller="Customer"
+                                       asp-action="Edit"
+                                       asp-route-id="@customer.CustomerId"
+                                       class="edit-button">
+
+                                        Edit
+
+                                    </a>
+
+
+                                    <a asp-controller="Customer"
+                                       asp-action="Delete"
+                                       asp-route-id="@customer.CustomerId"
+                                       class="delete-button"
+                                       onclick="return confirm('Are you sure you want to delete?');">
+
+                                        Delete
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

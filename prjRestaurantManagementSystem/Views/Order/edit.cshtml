@@ -1,0 +1,402 @@
+﻿@using prjRestaurantManagementSystem.Models
+
+@{
+    Layout = null;
+
+    Order order = Model;
+    bool isEdit = order.OrderId > 0;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        @(isEdit ? "Update Order" : "Add Order")
+    </title>
+
+    <link rel="stylesheet" href="~/css/style.css" />
+
+    <style>
+        .form-card {
+            background-color: white;
+            max-width: 700px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-card h2 {
+            margin-bottom: 25px;
+            color: #343434;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #df3038;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            background-color: white;
+        }
+
+        .form-group select:focus {
+            border-color: #df3038;
+        }
+
+        .form-actions {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .save-button {
+            background-color: #df3038;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .save-button:hover {
+            background-color: #b9252c;
+        }
+
+        .back-button {
+            background-color: #777;
+            color: white;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 6px;
+        }
+
+        .back-button:hover {
+            color: white;
+            background-color: #555;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            RMS
+        </div>
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">⌂</span>
+            Dashboard
+
+        </a>
+
+
+        <a asp-controller="Customer"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">👤</span>
+            Customers
+
+        </a>
+
+
+        <a asp-controller="Order"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">🛒</span>
+            Orders
+
+        </a>
+
+
+        <a asp-controller="OrderDetail"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">📋</span>
+            Order Details
+
+        </a>
+
+    </div>
+
+
+    <!-- Main Area -->
+
+    <div class="main">
+
+        <!-- Topbar -->
+
+        <div class="topbar">
+
+            <div class="menu-button">
+                ☰
+            </div>
+
+            <div class="admin">
+                Admin
+            </div>
+
+        </div>
+
+
+        <!-- Form Content -->
+
+        <div class="content">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        @(isEdit ? "Update Order" : "Add Order")
+                    </h1>
+
+                    <p>
+                        @(isEdit
+                            ? "Update restaurant order information"
+                            : "Add a new order to the system")
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <h2>
+                    Order Information
+                </h2>
+
+
+                <form method="post"
+                      asp-controller="Order"
+                      asp-action="@(isEdit ? "Update" : "Save")">
+
+                    <input type="hidden"
+                           name="OrderId"
+                           value="@order.OrderId" />
+
+
+                    <!-- Customer -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Customer
+                        </label>
+
+                        <select name="CustomerId"
+                                required>
+
+                            <option value="">
+                                -- Select Customer --
+                            </option>
+
+                            @foreach (var customer in ViewBag.Customers)
+                            {
+                                if (customer.CustomerId == order.CustomerId)
+                                {
+                                    <option value="@customer.CustomerId" selected>
+                                        @customer.CustomerName
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@customer.CustomerId">
+                                        @customer.CustomerName
+                                    </option>
+                                }
+                            }
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Order Date -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Order Date
+                        </label>
+
+                        <input type="date"
+                               name="OrderDate"
+                               value="@order.OrderDate.ToString("yyyy-MM-dd")"
+                               required />
+
+                    </div>
+
+
+                    <!-- Total Amount -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Total Amount
+                        </label>
+
+                        <input type="number"
+                               name="TotalAmount"
+                               value="@order.TotalAmount"
+                               step="0.01"
+                               required />
+
+                    </div>
+
+
+                    <!-- Order Status -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Order Status
+                        </label>
+
+                        <select name="OrderStatus"
+                                required>
+
+                            <option value="">
+                                -- Select Status --
+                            </option>
+
+                            @if (order.OrderStatus == "Pending")
+                            {
+                                <option value="Pending" selected>
+                                    Pending
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="Pending">
+                                    Pending
+                                </option>
+                            }
+
+
+                            @if (order.OrderStatus == "Preparing")
+                            {
+                                <option value="Preparing" selected>
+                                    Preparing
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="Preparing">
+                                    Preparing
+                                </option>
+                            }
+
+
+                            @if (order.OrderStatus == "Completed")
+                            {
+                                <option value="Completed" selected>
+                                    Completed
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="Completed">
+                                    Completed
+                                </option>
+                            }
+
+
+                            @if (order.OrderStatus == "Cancelled")
+                            {
+                                <option value="Cancelled" selected>
+                                    Cancelled
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="Cancelled">
+                                    Cancelled
+                                </option>
+                            }
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+
+                    <div class="form-actions">
+
+                        <button type="submit"
+                                class="save-button">
+
+                            @(isEdit ? "Update Order" : "Save Order")
+
+                        </button>
+
+
+                        <a asp-controller="Order"
+                           asp-action="Index"
+                           class="back-button">
+
+                            Back
+
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

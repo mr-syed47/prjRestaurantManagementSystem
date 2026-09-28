@@ -1,0 +1,354 @@
+/* =========================
+   GENERAL
+========================= */
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #f4f5f9;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 230px;
+    height: 100vh;
+    background-color: #343434;
+    color: white;
+}
+
+.logo {
+    height: 70px;
+    background-color: #df3038;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.menu-title {
+    padding: 25px 20px 10px;
+    color: #aaa;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+    .menu-item:hover {
+        background-color: #df3038;
+        color: white;
+    }
+
+.menu-icon {
+    width: 35px;
+    font-size: 20px;
+}
+
+
+/* =========================
+   MAIN AREA
+========================= */
+
+.main {
+    margin-left: 230px;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+    height: 70px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.menu-button {
+    font-size: 25px;
+    color: #df3038;
+}
+
+.admin {
+    color: #df3038;
+    font-weight: bold;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+    padding: 40px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+    .page-header h1 {
+        color: #343434;
+        font-size: 30px;
+        margin: 0;
+    }
+
+    .page-header p {
+        color: #777;
+        margin-top: 5px;
+    }
+
+
+/* =========================
+   ADD BUTTON
+========================= */
+
+.add-button {
+    background-color: #df3038;
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+    .add-button:hover {
+        background-color: #b9252c;
+        color: white;
+    }
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #343434;
+    color: white;
+}
+
+th {
+    padding: 15px;
+    text-align: left;
+    font-size: 14px;
+}
+
+td {
+    padding: 14px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background-color: #fff5f5;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.edit-button {
+    background-color: #f0ad4e;
+    color: white;
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.delete-button {
+    background-color: #df3038;
+    color: white;
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+    .edit-button:hover,
+    .delete-button:hover {
+        color: white;
+        opacity: 0.85;
+    }
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.welcome {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+    .welcome p {
+        color: #df3038;
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .welcome h1 {
+        color: #df3038;
+        font-size: 38px;
+        font-weight: bold;
+    }
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.card {
+    background-color: white;
+    min-height: 190px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e3e3e3;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+    .card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        border-color: #df3038;
+    }
+
+.card-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #df3038;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* =========================
+   EMPTY TABLE MESSAGE
+========================= */
+
+.empty-message {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 190px;
+    }
+
+    .main {
+        margin-left: 190px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 25px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}

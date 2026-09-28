@@ -1,0 +1,228 @@
+﻿@using prjRestaurantManagementSystem.Models
+
+@{
+    Layout = null;
+
+    List<OrderDetail> orderDetails = Model;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Order Details - Restaurant Management</title>
+
+    <link rel="stylesheet" href="~/css/style.css" />
+
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            RMS
+        </div>
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">⌂</span>
+            Dashboard
+
+        </a>
+
+
+        <a asp-controller="Customer"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">👤</span>
+            Customers
+
+        </a>
+
+
+        <a asp-controller="Order"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">🛒</span>
+            Orders
+
+        </a>
+
+
+        <a asp-controller="OrderDetail"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">📋</span>
+            Order Details
+
+        </a>
+
+    </div>
+
+
+    <!-- Main Area -->
+
+    <div class="main">
+
+        <!-- Topbar -->
+
+        <div class="topbar">
+
+            <div class="menu-button">
+                ☰
+            </div>
+
+            <div class="admin">
+                Admin
+            </div>
+
+        </div>
+
+
+        <!-- Order Details Content -->
+
+        <div class="content">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Order Details
+                    </h1>
+
+                    <p>
+                        Manage restaurant order items
+                    </p>
+
+                </div>
+
+
+                <a asp-controller="OrderDetail"
+                   asp-action="Edit"
+                   asp-route-id="0"
+                   class="add-button">
+
+                    + Add Order Detail
+
+                </a>
+
+            </div>
+
+
+            <!-- Order Details Table -->
+
+            <div class="table-card">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Detail ID</th>
+
+                            <th>Order ID</th>
+
+                            <th>Item Name</th>
+
+                            <th>Quantity</th>
+
+                            <th>Unit Price</th>
+
+                            <th>Total Price</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var orderDetail in orderDetails)
+                        {
+                            <tr>
+
+                                <td>
+                                    @orderDetail.OrderDetailId
+                                </td>
+
+                                <td>
+                                    @orderDetail.OrderId
+                                </td>
+
+                                <td>
+                                    @orderDetail.ItemName
+                                </td>
+
+                                <td>
+                                    @orderDetail.Quantity
+                                </td>
+
+                                <td>
+                                    @orderDetail.UnitPrice
+                                </td>
+
+                                <td>
+                                    @orderDetail.TotalPrice
+                                </td>
+
+
+                                <td>
+
+                                    <a asp-controller="OrderDetail"
+                                       asp-action="Edit"
+                                       asp-route-id="@orderDetail.OrderDetailId"
+                                       class="edit-button">
+
+                                        Edit
+
+                                    </a>
+
+
+                                    <a asp-controller="OrderDetail"
+                                       asp-action="Delete"
+                                       asp-route-id="@orderDetail.OrderDetailId"
+                                       class="delete-button"
+                                       onclick="return confirm('Are you sure you want to delete?');">
+
+                                        Delete
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

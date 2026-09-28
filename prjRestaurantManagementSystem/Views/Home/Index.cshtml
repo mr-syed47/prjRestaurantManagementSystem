@@ -1,0 +1,150 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Restaurant Management System</title>
+
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <div class="logo">
+            RMS
+        </div>
+
+        <div class="menu-title">
+            Main Menu
+        </div>
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">⌂</span>
+            Dashboard
+
+        </a>
+
+        <a asp-controller="Customer"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">👤</span>
+            Customers
+
+        </a>
+
+        <a asp-controller="Order"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">🛒</span>
+            Orders
+
+        </a>
+
+        <a asp-controller="OrderDetail"
+           asp-action="Index"
+           class="menu-item">
+
+            <span class="menu-icon">📋</span>
+            Order Details
+
+        </a>
+
+    </div>
+
+
+    <!-- Main Area -->
+    <div class="main">
+
+        <!-- Topbar -->
+        <div class="topbar">
+
+            <div class="menu-button">
+                ☰
+            </div>
+
+            <div class="admin">
+                Admin
+            </div>
+
+        </div>
+
+
+        <!-- Dashboard Content -->
+        <div class="content">
+
+            <div class="welcome">
+
+                <p>Welcome to</p>
+
+                <h1>Restaurant Management</h1>
+
+            </div>
+
+
+            <div class="cards">
+
+                <a asp-controller="Customer"
+                   asp-action="Index"
+                   class="card">
+
+                    <div class="card-icon">
+                        👤
+                    </div>
+
+                    <h3>Customers</h3>
+
+                    <p>Manage customer records</p>
+
+                </a>
+
+
+                <a asp-controller="Order"
+                   asp-action="Index"
+                   class="card">
+
+                    <div class="card-icon">
+                        🛒
+                    </div>
+
+                    <h3>Orders</h3>
+
+                    <p>Manage restaurant orders</p>
+
+                </a>
+
+
+                <a asp-controller="OrderDetail"
+                   asp-action="Index"
+                   class="card">
+
+                    <div class="card-icon">
+                        📋
+                    </div>
+
+                    <h3>Order Details</h3>
+
+                    <p>View order item details</p>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
